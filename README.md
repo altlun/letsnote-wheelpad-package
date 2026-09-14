@@ -10,12 +10,8 @@ Hyprland のプラグインではなく仮想マウスとして動くため、X1
 ```sh
 sudo pacman -S --needed rust base-devel
 ./setup/build-package.sh
-sudo pacman -U dist/wheelpad-0.2.0-2-x86_64.pkg.tar.zst
-sudo modprobe uinput
-sudo udevadm control --reload-rules
-sudo udevadm trigger --subsystem-match=input
-sudo udevadm trigger --subsystem-match=misc --sysname-match=uinput
-sudo udevadm settle
+sudo pacman -U dist/wheelpad-0.2.0-3-x86_64.pkg.tar.zst
+wheelpad setup
 wheelpad --check
 ```
 
@@ -25,7 +21,7 @@ udev ルールはアクティブなローカルセッションにタッチパッ
 
 ## 動作確認
 
-古い Python 版や他の wheelpad を Ctrl+C で停止してから実行します。
+古い wheelpad を Ctrl+C で停止してから実行します。
 
 ```sh
 wheelpad --dry-run
@@ -62,13 +58,17 @@ journalctl --user -u wheelpad.service -n 30 --no-pager
 ```
 
 古い `~/.config/systemd/user/wheelpad.service` があるとパッケージ版より優先されるため、
-Python 版の ExecStart が残っていないか `systemctl --user cat wheelpad.service` で確認してください。
+古い ExecStart が残っていないか `systemctl --user cat wheelpad.service` で確認してください。
 旧設定は退避してから daemon-reload してください。
 旧 hyprland.conf を使う環境では `exec-once = systemctl --user start wheelpad.service` を使用します。
 
 停止: `systemctl --user stop wheelpad.service`。
 自動起動の解除: 追加した `dofile` 行を削除します。
 アンインストール: 停止・設定行の削除後に `sudo pacman -R wheelpad`。
+
+セットアップは Rust CLI からも実行できます。`wheelpad setup` は uinput/udev を
+再読み込みし、Hyprland の Lua 設定と user systemd サービスを設定します。
+設定だけ行う場合は `wheelpad setup --no-start` を使用します。
 
 ## 開発・検証
 
@@ -81,16 +81,13 @@ cargo build --release --locked
 ```
 
 中心 (3618.68, 2941.66)、半径 1734.19 は同梱の `circle.csv` から得た CF-SZ6 用の値です。
-Python 版で実機の円運動検出を確認済みです。Rust 版の実機確認は別途必要です。
 通常起動では元のタッチパッドを排他的に取得し、仮想タッチパッドを経由して通常操作を転送します。
 外周の接触情報だけを抑制し、物理ボタンは転送します。終了すると排他取得を解除します。
 入力イベント欠落時は終了し、サービスによる再起動で状態を再構築します。
 起動時は指を離してください。`--dry-run` は排他取得しないためポインターは動きます。
 デバイス名ごとのHyprland設定がある場合、仮想タッチパッド名にも適用が必要です。
 
-Python 版 (`src/wheelpad_lab`, `pyproject.toml`) と記録・分析スクリプトは比較用に残しています。
-配布パッケージには Rust バイナリと実行設定だけを含めます。
-ライセンスはまだ選択していません。公開配布前に決定してください。
+配布パッケージは Rust バイナリと実行設定だけを含み、MIT ライセンスで公開しています。
 
 参考: [evdev](https://docs.rs/evdev/0.13.2/evdev/)、
 [Hyprland 自動起動](https://wiki.hypr.land/Configuring/Basics/Autostart/)。

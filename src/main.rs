@@ -1,6 +1,7 @@
 mod gesture;
 mod pointer;
-use clap::Parser;
+mod setup;
+use clap::{Parser, Subcommand};
 use evdev::{
     raw_stream::RawDevice, uinput::VirtualDevice, AbsoluteAxisCode as Abs, AttributeSet, EventType,
     InputEvent, KeyCode as Key, RelativeAxisCode as Rel, UinputAbsSetup,
@@ -13,6 +14,8 @@ use std::{error::Error, path::PathBuf};
     about = "Let's Note circular scrolling for Wayland / Hyprland"
 )]
 struct Args {
+    #[command(subcommand)]
+    command: Option<Command>,
     #[arg(long)]
     device: Option<PathBuf>,
     #[arg(long)]
@@ -23,6 +26,16 @@ struct Args {
     reverse: bool,
     #[arg(long, default_value = "15", value_parser = positive)]
     degrees_per_step: f64,
+}
+
+#[derive(Subcommand, Debug)]
+enum Command {
+    /// Install udev access and configure the user systemd/Hyprland startup.
+    Setup {
+        /// Configure files and reload udev, but do not start the service.
+        #[arg(long)]
+        no_start: bool,
+    },
 }
 fn positive(s: &str) -> Result<f64, String> {
     let v: f64 = s.parse().map_err(|_| "Expected a number")?;
@@ -240,7 +253,12 @@ impl State {
     }
 }
 fn main() {
-    if let Err(error) = run(Args::parse()) {
+    let args = Args::parse();
+    let result = match args.command {
+        Some(Command::Setup { no_start }) => setup::run(no_start),
+        None => run(args),
+    };
+    if let Err(error) = result {
         eprintln!("wheelpad: {error}");
         std::process::exit(1);
     }
