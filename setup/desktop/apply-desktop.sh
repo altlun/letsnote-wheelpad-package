@@ -20,4 +20,5 @@ while IFS= read -r -d '' src; do
     install -Dm644 -- "$src" "$dest"
 done < <(find "$source_dir/config" -type f -print0 | sort -z)
 install -Dm755 "$source_dir/start-desktop.sh" "$HOME/.local/bin/wheelpad-desktop-start"
+install -Dm755 "$source_dir/power-menu.sh" "$HOME/.local/bin/wheelpad-power-menu"
 printf 'Desktop configuration installed. Backups: %s\n' "$backup"

@@ -82,12 +82,16 @@ Hyprland settings, Japanese input and wheelpad integration.
 
 - Super+Q: Foot, starting Fish (the login shell is unchanged).
 - Super+R: Fuzzel application launcher.
+- Waybar の `Apps`: Fuzzel のアプリ一覧。`Super+R` でも開けます。
+- Waybar の `⏻`: ロック、ログアウト、再起動、シャットダウン。
 - Super+E: Thunar; it is also the default directory handler.
 - Super+L: Hyprlock, using the login password.
 - 10 minutes idle: lock; 11 minutes: screen off. No automatic suspend timer.
 - Neovim: `nvim`, system clipboard, line numbers, Space then W to save.
 - Waybar: workspaces 1〜5, clock, volume, network, battery and tray. Workspace
   buttons are persistent, so an empty workspace can be selected directly.
+- Hyprland はデスクトップアイコンを表示しない構成です。アプリは `Apps` または
+  `Super+R` から起動します。
 - PipeWire/PulseAudio compatibility and WirePlumber use their packaged defaults.
 - Hyprpaper uses the installed `/usr/share/hypr/wall0.png` wallpaper.
 

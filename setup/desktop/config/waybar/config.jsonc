@@ -3,9 +3,19 @@
   "position": "top",
   "height": 28,
   "spacing": 8,
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["custom/launcher", "hyprland/workspaces"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "battery", "tray"],
+  "modules-right": ["pulseaudio", "network", "battery", "tray", "custom/power"],
+  "custom/launcher": {
+    "format": " Apps ",
+    "on-click": "fuzzel",
+    "tooltip": false
+  },
+  "custom/power": {
+    "format": " ⏻ ",
+    "on-click": "~/.local/bin/wheelpad-power-menu",
+    "tooltip": false
+  },
   "hyprland/workspaces": {
     "format": "{id}",
     "on-click": "activate",
