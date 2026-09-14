@@ -69,7 +69,7 @@ Run from the checkout as your normal user in the Hyprland session:
 ./setup/desktop/setup-desktop.sh
 ```
 
-This installs Waybar, Fuzzel, Foot, Fish, Neovim, Thunar, Mako, Hyprpaper,
+This installs Waybar, Fuzzel, Foot, Fish, Neovim, Thunar, Mako, awww,
 Hyprlock, Hypridle, PipeWire and WirePlumber, plus clipboard, Japanese fonts,
 volume/media/backlight and file-manager helpers. `hyprlock` / `hypridle` are
 used for the requested lock and idle tools.
@@ -93,7 +93,9 @@ Hyprland settings, Japanese input and wheelpad integration.
 - Hyprland はデスクトップアイコンを表示しない構成です。アプリは `Apps` または
   `Super+R` から起動します。
 - PipeWire/PulseAudio compatibility and WirePlumber use their packaged defaults.
-- Hyprpaper uses the installed `/usr/share/hypr/wall0.png` wallpaper.
+- `awww` crossfades between the supplied space frames every 45 seconds.
+- `Super+1`〜`Super+5` switches workspaces; `Super+矢印` moves focus and
+  `Super+Ctrl+矢印` resizes the active window. `Super+V` toggles floating mode.
 
 Desktop processes run as user services grouped in `wheelpad-desktop.target`.
 The Hyprland start hook imports the session environment before starting them;
@@ -101,7 +103,7 @@ the exit hook stops them. Inspect with:
 
 ```sh
 systemctl --user status wheelpad-desktop.target
-journalctl --user -u wheelpad-waybar -u wheelpad-mako -u wheelpad-hyprpaper -u wheelpad-hypridle -n 50
+journalctl --user -u wheelpad-waybar -u wheelpad-mako -u wheelpad-space -u wheelpad-hypridle -n 50
 wpctl status
 hyprctl configerrors
 ```
@@ -111,6 +113,6 @@ Package download failures on an outdated Arch install require a full
 
 Configuration references:
 - https://wiki.hypr.land/Configuring/Basics/Autostart/
-- https://wiki.hypr.land/Hypr-Ecosystem/hyprpaper/
+- https://codeberg.org/LGFae/awww
 - https://wiki.hypr.land/Hypr-Ecosystem/hypridle/
 - https://wiki.hypr.land/Hypr-Ecosystem/hyprlock/

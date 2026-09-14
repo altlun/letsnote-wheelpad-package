@@ -21,4 +21,7 @@ while IFS= read -r -d '' src; do
 done < <(find "$source_dir/config" -type f -print0 | sort -z)
 install -Dm755 "$source_dir/start-desktop.sh" "$HOME/.local/bin/wheelpad-desktop-start"
 install -Dm755 "$source_dir/power-menu.sh" "$HOME/.local/bin/wheelpad-power-menu"
+install -Dm755 "$source_dir/wheelpad-space-wallpaper.sh" "$HOME/.local/bin/wheelpad-space-wallpaper"
+mkdir -p "$HOME/.local/share/wheelpad/wallpapers"
+cp -f -- "$source_dir"/../../assets/wallpapers/space-*.png "$HOME/.local/share/wheelpad/wallpapers/"
 printf 'Desktop configuration installed. Backups: %s\n' "$backup"

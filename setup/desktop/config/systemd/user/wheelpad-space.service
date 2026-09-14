@@ -1,0 +1,12 @@
+[Unit]
+Description=Animated space wallpaper
+PartOf=wheelpad-desktop.target
+After=graphical-session.target
+
+[Service]
+ExecStart=%h/.local/bin/wheelpad-space-wallpaper
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=wheelpad-desktop.target

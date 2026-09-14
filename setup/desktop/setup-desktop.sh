@@ -7,7 +7,7 @@ if (( EUID == 0 )); then
 fi
 if [[ "${1:-}" != "--configure-only" ]]; then
 sudo pacman -S --needed waybar fuzzel foot fish neovim thunar mako hyprpaper \
-    hyprlock hypridle pipewire pipewire-pulse pipewire-alsa wireplumber \
+    hyprlock hypridle awww pipewire pipewire-pulse pipewire-alsa wireplumber \
     brightnessctl playerctl wl-clipboard noto-fonts-cjk ttf-dejavu gvfs tumbler
 fi
 ./apply-desktop.sh
