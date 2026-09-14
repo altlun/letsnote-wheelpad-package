@@ -86,7 +86,8 @@ Hyprland settings, Japanese input and wheelpad integration.
 - Super+L: Hyprlock, using the login password.
 - 10 minutes idle: lock; 11 minutes: screen off. No automatic suspend timer.
 - Neovim: `nvim`, system clipboard, line numbers, Space then W to save.
-- Waybar: workspaces, clock, volume, network, battery and tray.
+- Waybar: workspaces 1〜5, clock, volume, network, battery and tray. Workspace
+  buttons are persistent, so an empty workspace can be selected directly.
 - PipeWire/PulseAudio compatibility and WirePlumber use their packaged defaults.
 - Hyprpaper uses the installed `/usr/share/hypr/wall0.png` wallpaper.
 

@@ -6,7 +6,11 @@
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "network", "battery", "tray"],
-  "hyprland/workspaces": {"format": "{name}", "on-click": "activate"},
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "on-click": "activate",
+    "persistent-workspaces": {"*": 5}
+  },
   "clock": {"format": "{:%m/%d (%a) %H:%M}", "tooltip-format": "{:%Y/%m/%d}"},
   "pulseaudio": {"format": "VOL {volume}%", "format-muted": "MUTE", "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", "scroll-step": 5},
   "network": {"format-wifi": "Wi-Fi {signalStrength}%", "format-ethernet": "LAN", "format-disconnected": "Offline", "tooltip-format": "{ifname}: {ipaddr}"},
