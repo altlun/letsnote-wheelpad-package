@@ -1,0 +1,13 @@
+[Unit]
+Description=Lets Note circular touchpad scrolling
+PartOf=graphical-session.target
+After=graphical-session.target
+StartLimitIntervalSec=0
+
+[Service]
+ExecStart=/usr/bin/wheelpad
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=graphical-session.target

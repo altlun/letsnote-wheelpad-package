@@ -1,0 +1,8 @@
+[Unit]
+Description=Desktop hyprpaper
+PartOf=wheelpad-desktop.target
+
+[Service]
+ExecStart=/usr/bin/hyprpaper
+Restart=on-failure
+RestartSec=3

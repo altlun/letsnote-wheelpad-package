@@ -1,0 +1,2 @@
+# CSV recordings use standard CRLF line endings.
+*.csv whitespace=cr-at-eol

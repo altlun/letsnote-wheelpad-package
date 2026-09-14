@@ -1,0 +1,13 @@
+font=Noto Sans CJK JP 10
+background-color=#171e2bf2
+text-color=#dce5ef
+border-color=#6482a6
+border-size=2
+border-radius=8
+width=340
+margin=10
+default-timeout=5000
+anchor=top-right
+[urgency=critical]
+default-timeout=0
+border-color=#ff8585

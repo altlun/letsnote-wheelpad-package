@@ -1,0 +1,3 @@
+# Grant access only to the active local session, before 73-seat-late.rules.
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="SynPS/2 Synaptics TouchPad", TAG+="uaccess"
+SUBSYSTEM=="misc", KERNEL=="uinput", TAG+="uaccess"

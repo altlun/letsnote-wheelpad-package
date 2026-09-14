@@ -1,0 +1,8 @@
+[Unit]
+Description=Desktop waybar
+PartOf=wheelpad-desktop.target
+
+[Service]
+ExecStart=/usr/bin/waybar
+Restart=on-failure
+RestartSec=3

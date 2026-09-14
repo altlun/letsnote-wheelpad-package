@@ -1,0 +1,8 @@
+[Unit]
+Description=Desktop hypridle
+PartOf=wheelpad-desktop.target
+
+[Service]
+ExecStart=/usr/bin/hypridle
+Restart=on-failure
+RestartSec=3

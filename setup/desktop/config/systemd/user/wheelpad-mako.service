@@ -1,0 +1,8 @@
+[Unit]
+Description=Desktop mako
+PartOf=wheelpad-desktop.target
+
+[Service]
+ExecStart=/usr/bin/mako
+Restart=on-failure
+RestartSec=3

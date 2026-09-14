@@ -1,0 +1,7 @@
+* { font-family: "Noto Sans CJK JP", sans-serif; font-size: 12px; min-height: 0; }
+window#waybar { background: #171e2b; color: #dce5ef; }
+#workspaces button { padding: 0 8px; color: #a9b8c9; border-radius: 0; }
+#workspaces button.active { background: #334762; color: #ffffff; }
+#clock, #pulseaudio, #network, #battery, #tray { padding: 0 7px; }
+#battery.warning { color: #f2ce80; }
+#battery.critical { color: #ff8585; }
